@@ -1,8 +1,7 @@
 from django.db import models
 from django.urls import reverse
 # Create your models here.
-def photo_directory_path(instance, filename):
-    return 'photo/{0}/{1}'.format(instance.user.id, filename)
+
 
 
 class User(models.Model):
@@ -33,7 +32,12 @@ class Category(models.Model):
     category = models.CharField( max_length=255)
     def __str__(self):
         return self.category
+    
+def photo_directory_path(instance, filename):
+    print(instance.product)
+    print(filename)
+    return 'photo/{0}/{1}'.format(instance.product.pk, filename)
 
 class Photos(models.Model):
     product = models.ForeignKey('Products', on_delete=models.PROTECT)
-    photo = models.ImageField(upload_to="photo/%Y/%m/%d/", verbose_name='Фото')
+    photo = models.ImageField(upload_to=photo_directory_path, verbose_name='Фото')

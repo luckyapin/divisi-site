@@ -2,4 +2,12 @@
 
 {% block content %}
 {{ product.name }}
+{{ product.cost }}
+{{ product.description }}
+{{ product.category }}
+{{ product.available }}
+{% for p in photos %}
+    <img  src='{{ p.photo.url }}' height="100", width="100"/>
+{% endfor %}
+
 {% endblock content %}

@@ -14,7 +14,7 @@ class Divisi_home(DataMixin, ListView):
 
     def get_context_data(self,*, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title = 'Главная страница')
+        c_def = self.get_user_context(title='Главная страница', photos=Photos.objects.all())
         return dict(list(context.items())  + list(c_def.items()))
     
     def get_queryset(self):
@@ -28,7 +28,8 @@ class Product(DataMixin, DetailView):
 
     def get_context_data(self,*, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title = context['product'])
+        c_def = self.get_user_context(title=context['product'], photos=Photos.objects.filter(product__pk=self.kwargs['product_id']))
+        print(dict(list(context.items())  + list(c_def.items())))
         return dict(list(context.items())  + list(c_def.items()))
 
 def pageNotFound(request, exception):

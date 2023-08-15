@@ -21,6 +21,17 @@
         </div>
     {% endblock menu %}
 
+    {% block categories %}
+        <ul>
+            
+            {% for c in cats %}
+            <li>
+                <a href="">{{ c }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    {% endblock %}
+
     {% block content %}
 
     {% endblock content %}

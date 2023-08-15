@@ -5,7 +5,17 @@
     <ul class="catalog">
         
         {% for p in Products %}
-        <li class="product"> <a href="{{ p.get_absolute_url }}">{{p.name}}</a> </li>
+            {% for i in photos %}
+            
+                {% if p.pk == i.product.pk %}
+                <img src="{{ i.photo.url }}" height="100", width="100">
+                {% endif %}
+            {% endfor %}
+            <li class="product"> <a href="{{ p.get_absolute_url }}">{{p.name}}</a> </li>
+            {{ p.cost }}
+            {{ p.description }}
+            {{ p.category }}
+            {{ p.available }}
         {% endfor %}
 
 
