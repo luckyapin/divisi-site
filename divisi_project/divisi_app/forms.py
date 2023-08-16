@@ -14,3 +14,15 @@ class RegistrationUserForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
+
+class AddProductForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+    class Meta:
+        model = Products
+        fields = ['name', 'cost', 'description', 'category', 'available']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-input'}),
+            'cost': forms.NumberInput(attrs={'class': 'form-input'}),
+            'description': forms.Textarea(attrs={'cols': 60, 'rows': 10}),
+            }

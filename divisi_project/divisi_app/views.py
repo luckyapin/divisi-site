@@ -53,6 +53,16 @@ class RegistrationUser(DataMixin, CreateView):
         user = form.save()
         login(self.request, user)
         return redirect('home')
+    
+class AddProduct(DataMixin, CreateView):
+    form_class = AddProductForm
+    template_name = 'divisi_app/AddProduct.html'
+    success_url = reverse_lazy('home')
+    
+    def get_context_data(self,*, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title = 'Добавление товара')
+        return dict(list(context.items())  + list(c_def.items()))
 
 def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1>Страница не найдна</h1>')

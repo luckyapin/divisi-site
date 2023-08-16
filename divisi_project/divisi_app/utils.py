@@ -5,11 +5,12 @@ menu = [
     {'title': 'Каталог', 'url_name': 'home'},
     {'title': 'Корзина', 'url_name': 'home'},
     {'title': 'Профиль', 'url_name': 'home'},
-    {'title': 'Регистрация', 'url_name': 'registration'}
+    {'title': 'Регистрация', 'url_name': 'registration'},
+    {'title': 'Добавить товар', 'url_name': 'addproduct'}
     ]
 
 class DataMixin:
-    paginate_by = 3
+    
     def get_user_context(self, **kwargs):
         context = kwargs
         
