@@ -4,7 +4,7 @@ from django.urls import reverse
 
 
 
-class User(models.Model):
+class Divisi_User(models.Model):
     login = models.SlugField(max_length=255, unique=True, db_index=True)
     name = models.CharField(max_length=255)
     surname = models.CharField(max_length=255)
@@ -15,7 +15,7 @@ class User(models.Model):
         return self.login
     
 class Cart(models.Model):
-    login = models.ForeignKey("User", on_delete=models.PROTECT)
+    login = models.ForeignKey("Divisi_User", on_delete=models.PROTECT)
     product = models.ForeignKey("Products", on_delete=models.PROTECT)
     quantity = models.IntegerField()
 
